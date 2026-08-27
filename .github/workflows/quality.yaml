@@ -28,7 +28,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@249970729cb0ef3589644e2896645e5dc5ba9c38 # v6
         with:
-          node-version: 22.13.0
+          node-version: 22.18.0
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -38,6 +38,9 @@ jobs:
 
       - name: Run quality checks
         run: pnpm check
+
+      - name: Build package for documentation
+        run: pnpm build
 
       - name: Build documentation
         run: pnpm --filter profanity-kit-docs build
