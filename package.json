@@ -22,12 +22,15 @@
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "lint": "oxlint --type-aware .",
+    "package:artifact": "pnpm build && pnpm --filter profanity-kit pack --pack-destination artifacts && pnpm package:validate",
+    "package:validate": "node scripts/validate-package.mjs",
     "prepare": "lefthook install",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "typecheck": "pnpm --recursive --if-present typecheck"
   },
   "devDependencies": {
+    "@arethetypeswrong/cli": "0.18.5",
     "@changesets/cli": "3.0.1",
     "@commitlint/cli": "21.2.2",
     "@commitlint/config-conventional": "21.2.2",
@@ -36,8 +39,10 @@
     "oxfmt": "0.65.0",
     "oxlint": "1.80.0",
     "oxlint-tsgolint": "7.0.2001",
+    "publint": "0.3.22",
     "tsdown": "0.22.14",
     "typescript": "7.0.2",
+    "vite": "8.2.2",
     "vitest": "4.1.11"
   },
   "engines": {
