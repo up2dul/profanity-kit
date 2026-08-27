@@ -1,6 +1,6 @@
 # Profanity Kit — Implementation Plan
 
-**Status:** Phase 2 complete; Phase 3 is next
+**Status:** Phase 3 complete; Phase 4 is next
 
 The plan converts the API contract and ADRs into small validation gates. A phase
 is complete only when its evidence exists; later phases may revise provisional
@@ -46,14 +46,17 @@ points resolve from the packed artifact.
 
 ## Phase 3 — Dictionary pipeline
 
-- Define canonical authoring schema and validation rules.
-- Build deterministic generation and regenerate-diff CI.
-- Research licensed sources and design the AI-assisted human review workflow.
-- Curate initial English and Indonesian corpora with edge-case tests.
-- Establish pack versioning and provenance metadata.
+- **Status:** Complete.
+- [x] Define canonical authoring schema and validation rules.
+- [x] Build deterministic generation and regenerate-diff CI.
+- [x] Research licensed sources and design the AI-assisted human review workflow.
+- [x] Curate initial English and Indonesian corpora with edge-case tests.
+- [x] Establish pack versioning and provenance metadata.
 
 **Gate:** every entry is reviewed or traceable, generation is reproducible, and
-corpus behavior is evaluated for representative false positives.
+corpus behavior is evaluated for representative false positives. The canonical
+sources live under `dictionaries/`, generated modules are checked by CI, and
+the initial corpora carry project-curated, human-reviewed provenance metadata.
 
 ## Phase 4 — Performance evidence
 
