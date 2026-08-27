@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "packageVersion": "0.0.0",
+  "runtime": "node22.13.0",
+  "iterations": 10000,
+  "samples": 5,
+  "measurements": {
+    "initialization.english": {
+      "medianMs": 20.849
+    },
+    "initialization.oneLanguage": {
+      "medianMs": 17.833
+    },
+    "initialization.multipleLanguages": {
+      "medianMs": 39.576
+    },
+    "check.shortNoMatch": {
+      "medianMs": 4.453
+    },
+    "check.shortEarlyMatch": {
+      "medianMs": 3.531
+    },
+    "check.longNoMatch": {
+      "medianMs": 612.804
+    },
+    "check.longLateMatch": {
+      "medianMs": 616.932
+    },
+    "findAll.repeatedMatches": {
+      "medianMs": 10.722
+    },
+    "check.indonesian": {
+      "medianMs": 5.612
+    },
+    "check.combined": {
+      "medianMs": 3.987
+    }
+  },
+  "budgets": {
+    "initialization.english": {
+      "maxMedianMs": 62.547
+    },
+    "initialization.oneLanguage": {
+      "maxMedianMs": 53.499
+    },
+    "initialization.multipleLanguages": {
+      "maxMedianMs": 118.728
+    },
+    "check.shortNoMatch": {
+      "maxMedianMs": 13.359
+    },
+    "check.shortEarlyMatch": {
+      "maxMedianMs": 10.593
+    },
+    "check.longNoMatch": {
+      "maxMedianMs": 1838.412
+    },
+    "check.longLateMatch": {
+      "maxMedianMs": 1850.796
+    },
+    "findAll.repeatedMatches": {
+      "maxMedianMs": 32.166
+    },
+    "check.indonesian": {
+      "maxMedianMs": 16.836
+    },
+    "check.combined": {
+      "maxMedianMs": 11.961
+    }
+  },
+  "comparison": {
+    "status": "reference-only",
+    "note": "Competitor comparisons require equivalent licensed corpora; this report uses neutral API fixtures and does not claim a competitor advantage."
+  }
+}
