@@ -19,6 +19,8 @@
     "changeset": "changeset",
     "changeset:status": "changeset status",
     "check": "pnpm format:check && pnpm lint && pnpm typecheck && pnpm test",
+    "dictionary:generate": "node scripts/generate-dictionaries.mjs",
+    "dictionary:check": "node scripts/generate-dictionaries.mjs --check",
     "format": "oxfmt .",
     "format:check": "oxfmt --check .",
     "lint": "oxlint --type-aware .",

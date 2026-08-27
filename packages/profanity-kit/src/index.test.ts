@@ -26,4 +26,14 @@ describe("public entry points", () => {
     expect(Object.isFrozen(indonesian)).toBe(true);
     expect(Object.isFrozen(indonesian.words)).toBe(true);
   });
+
+  it("matches reviewed entries without substring false positives", () => {
+    const detector = createDetector();
+
+    expect(detector.check("this is fucking shit")).toBe(true);
+    expect(detector.check("classic assessment remains clean")).toBe(false);
+    expect(detector.findAll("ass asshole").map((match) => match.value)).toEqual(
+      ["ass", "asshole"]
+    );
+  });
 });
