@@ -38,3 +38,6 @@ jobs:
 
       - name: Run quality checks
         run: pnpm check
+
+      - name: Build documentation
+        run: pnpm --filter profanity-kit-docs build

@@ -4,6 +4,7 @@
  * components here as you build (or install) them.
  */
 
+import ProfanityPlayground from "./components/profanity-playground.svelte";
 import Render from "./components/Render.astro";
 import { Aside } from "./components/ui/aside";
 import { Card } from "./components/ui/card";
@@ -22,4 +23,5 @@ export const components = {
   Steps,
   TabItem,
   Tabs,
+  ProfanityPlayground: ProfanityPlayground,
 };

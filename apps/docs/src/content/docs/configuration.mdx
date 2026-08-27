@@ -1,0 +1,31 @@
+---
+title: Configuration
+description: Configure custom entries, allowlists, and replacement output.
+sidebar:
+  order: 3
+---
+
+## Block and allow lists
+
+`blockList` adds custom whole-word entries. `allowList` wins over both built-in
+packs and the block list, which makes it suitable for known product terms.
+
+```ts
+const detector = createDetector({
+  blockList: ["internalterm"],
+  allowList: ["shit"],
+});
+```
+
+The precedence is `allowList` > `blockList` > language dictionaries.
+
+## Replacement
+
+`filter()` uses `"*"` by default. Pass a single Unicode code point to change
+the output for one call or set a detector default:
+
+```ts
+const detector = createDetector({ replacement: "•" });
+detector.filter("hide the shit"); // "hide the ••••"
+detector.filter("hide the shit", { replacement: "_" });
+```

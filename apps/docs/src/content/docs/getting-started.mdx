@@ -1,24 +1,38 @@
 ---
-title: Getting Started
-description: Install, configure, and ship your Nimbus docs site.
-audience: human
+title: Quick start
+description: Install Profanity Kit and detect your first complete word.
 sidebar:
   order: 1
   badge: Start here
 ---
 
-A quick tour of the three things you'll do most: install, configure, and
-ship.
-
 ## Install
 
-Use your favorite package manager to scaffold a new Nimbus project.
+<PackageManagers pkg="profanity-kit" />
 
-## Configure
+## Detect and filter
 
-Open `astro.config.ts` and edit the `nimbus({ ... })` options. The
-integration validates the config at build time.
+```ts
+import { createDetector } from "profanity-kit";
 
-## Ship
+const detector = createDetector();
 
-Run `astro build` and deploy the static output anywhere.
+detector.check("This contains shit"); // true
+detector.isClean("This is fine"); // true
+detector.filter("hide the shit"); // "hide the ****"
+```
+
+The root entry includes the reviewed English pack. Detectors are immutable;
+create a new detector when configuration changes.
+
+## Inspect matches
+
+```ts
+const [match] = detector.findAll("hide the shit");
+match.value; // "shit"
+match.start; // 9
+match.end; // 13
+match.languages; // ["en"]
+```
+
+See [matching semantics](/matching) for Unicode boundaries and offsets.

@@ -1,3 +1,4 @@
+import svelte from "@astrojs/svelte";
 import nimbus, {
   defineConfig as defineNimbusConfig,
 } from "@cloudflare/nimbus-docs";
@@ -9,11 +10,11 @@ const nimbusConfig = defineNimbusConfig({
   // CHANGE_ME: your site's canonical origin (no trailing slash). Drives
   // canonical URLs, absolute OG image URLs, robots.txt, sitemap, and the
   // links in /llms.txt — leaving the placeholder breaks all of them.
-  site: "https://example.com",
+  site: "https://profanity-kit.dev",
   // CHANGE_ME: your project's name — used for <title>, the home H1, and OG.
-  title: "Nimbus",
+  title: "Profanity Kit",
   // CHANGE_ME: a one-line description of your docs — used for meta + OG.
-  description: "Minimal starter consuming nimbus-docs.",
+  description: "A small, Unicode-aware profanity detector for TypeScript.",
   locale: "en",
   github: null,
   socialImageAlt: "Nimbus documentation preview",
@@ -34,6 +35,7 @@ export default defineConfig({
     defaultStrategy: "hover",
   },
   integrations: [
+    svelte(),
     nimbus(nimbusConfig, {
       // Authoring rules are opt-in by design — your repo, your taste. The
       // two below are the load-bearing pair: frontmatter has to validate

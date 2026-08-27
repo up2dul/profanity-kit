@@ -1,0 +1,46 @@
+---
+title: Language selection
+description: Keep only the dictionaries your application needs.
+sidebar:
+  order: 2
+---
+
+The root factory is a convenient English detector. Use the dictionary-free core
+when selecting packs explicitly:
+
+```ts
+import { createDetector } from "profanity-kit/core";
+import { indonesian } from "profanity-kit/languages/id";
+
+const detector = createDetector({ languages: [indonesian] });
+detector.check("kata goblok"); // true
+detector.check("englishsentinel"); // false
+```
+
+Importing `/core` does not include built-in dictionary data. Language packs are
+independent so bundlers can omit unused languages.
+
+## Combine packs
+
+```ts
+import { createDetector } from "profanity-kit/core";
+import { english } from "profanity-kit/languages/en";
+import { indonesian } from "profanity-kit/languages/id";
+
+const detector = createDetector({ languages: [english, indonesian] });
+```
+
+## Custom dictionaries
+
+Custom packs use the same shape and can be combined with built-in packs:
+
+```ts
+const community = {
+  code: "community",
+  name: "Community",
+  version: "1.0.0",
+  words: ["exampleword"],
+} as const;
+
+const detector = createDetector({ languages: [community] });
+```

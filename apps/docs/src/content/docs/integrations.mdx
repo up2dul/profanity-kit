@@ -1,0 +1,30 @@
+---
+title: Integrations and migration
+description: Use the detector in validation flows and migrate from ad-hoc checks.
+sidebar:
+  order: 5
+---
+
+## Zod
+
+```ts
+import { z } from "zod";
+import { createDetector } from "profanity-kit";
+
+const detector = createDetector();
+const cleanComment = z.string().refine(detector.isClean, {
+  message: "Please remove prohibited language.",
+});
+```
+
+## Migration from substring checks
+
+Replace `includes()` or a regular expression with a detector at the boundary
+where input is validated. This avoids false positives such as `ass` inside
+`classic`, preserves match offsets, and keeps dictionary data explicit.
+
+## Unsupported features
+
+The MVP intentionally does not support phrase matching, substring matching,
+aggressive leetspeak expansion, contextual moderation, or mutable global
+dictionaries. Create a new detector for a new configuration.

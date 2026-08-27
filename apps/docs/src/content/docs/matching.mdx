@@ -1,0 +1,26 @@
+---
+title: Matching semantics
+description: Understand Unicode boundaries, offsets, and deterministic results.
+sidebar:
+  order: 4
+---
+
+Matching is whole-word and Unicode-aware. Letters, combining marks, and
+numbers are part of a word; punctuation, whitespace, apostrophes, hyphens, and
+underscores are boundaries.
+
+```ts
+detector.check("classic assessment"); // false: no standalone "ass"
+detector.check("shit!"); // true
+```
+
+`findAll()` returns matches in source order, including repeats. `start` and
+`end` are UTF-16 offsets into the original string, while replacement output
+preserves every unmatched segment.
+
+`check()` exits on the first match. `isClean()` is its readable inverse.
+Methods are closure-backed and safe to pass as callbacks:
+
+```ts
+items.filter(detector.isClean);
+```
