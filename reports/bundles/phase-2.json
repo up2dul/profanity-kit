@@ -1,0 +1,45 @@
+{
+  "schemaVersion": 1,
+  "packageVersion": "0.0.0",
+  "consumerRuntime": "node22.13.0",
+  "tools": {
+    "vite": "8.2.2"
+  },
+  "bytes": {
+    "core": {
+      "raw": 7350,
+      "minified": 4745,
+      "gzip": 1810,
+      "brotli": 1591
+    },
+    "root": {
+      "raw": 8191,
+      "minified": 5164,
+      "gzip": 1857,
+      "brotli": 1636
+    },
+    "english": {
+      "raw": 456,
+      "minified": 321,
+      "gzip": 248,
+      "brotli": 217
+    },
+    "indonesian": {
+      "raw": 474,
+      "minified": 333,
+      "gzip": 253,
+      "brotli": 227
+    },
+    "combined": {
+      "raw": 8031,
+      "minified": 4974,
+      "gzip": 1863,
+      "brotli": 1639
+    }
+  },
+  "assertions": {
+    "coreExcludesBuiltInDictionaries": true,
+    "indonesianExcludesEnglish": true,
+    "rootExcludesIndonesian": true
+  }
+}

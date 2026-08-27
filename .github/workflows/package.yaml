@@ -53,6 +53,9 @@ jobs:
       - name: Validate packed consumers
         run: pnpm package:validate
 
+      - name: Verify bundle isolation and measurements
+        run: pnpm package:measure:check
+
       - name: Upload package artifact
         uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
         with:

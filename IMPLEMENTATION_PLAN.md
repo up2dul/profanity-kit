@@ -1,6 +1,6 @@
 # Profanity Kit — Implementation Plan
 
-**Status:** Phase 1 complete; Phase 2 is next
+**Status:** Phase 2 complete; Phase 3 is next
 
 The plan converts the API contract and ADRs into small validation gates. A phase
 is complete only when its evidence exists; later phases may revise provisional
@@ -33,11 +33,13 @@ and replacement semantics pass without optimizing prematurely.
 
 ## Phase 2 — Package boundaries and artifacts
 
-- Implement root, `/core`, `/languages/en`, and `/languages/id` entry points.
-- Configure tsdown and explicit export maps.
-- Build and inspect the npm tarball.
-- Add Node ESM/require, Vite, TypeScript, publint, and type-resolution fixtures.
-- Measure core and language bundle isolation.
+- **Status:** Complete.
+- [x] Implement root, `/core`, `/languages/en`, and `/languages/id` entry points.
+- [x] Configure tsdown and explicit export maps.
+- [x] Build and inspect the npm tarball.
+- [x] Add Node ESM/require, Vite, TypeScript, publint, and type-resolution
+      fixtures.
+- [x] Measure core and language bundle isolation.
 
 **Gate:** Indonesian-only output contains no English data; all public entry
 points resolve from the packed artifact.

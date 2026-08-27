@@ -23,6 +23,8 @@
     "format:check": "oxfmt --check .",
     "lint": "oxlint --type-aware .",
     "package:artifact": "pnpm build && pnpm --filter profanity-kit pack --pack-destination artifacts && pnpm package:validate",
+    "package:measure": "node scripts/measure-bundles.mjs",
+    "package:measure:check": "node scripts/measure-bundles.mjs --check",
     "package:validate": "node scripts/validate-package.mjs",
     "prepare": "lefthook install",
     "test": "vitest run --passWithNoTests",
