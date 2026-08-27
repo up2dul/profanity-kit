@@ -1,2 +1,2 @@
-// Public API implementation begins in Phase 1.
+// Public package entry points are assembled in Phase 2.
 export {};

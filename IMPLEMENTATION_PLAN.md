@@ -1,6 +1,6 @@
 # Profanity Kit — Implementation Plan
 
-**Status:** Phase 0 complete; Phase 1 is next
+**Status:** Phase 1 complete; Phase 2 is next
 
 The plan converts the API contract and ADRs into small validation gates. A phase
 is complete only when its evidence exists; later phases may revise provisional
@@ -21,11 +21,12 @@ quality and package workflows enforce the same checks in CI.
 
 ## Phase 1 — Matcher proof of concept
 
-- Implement normalization, Unicode tokenization, the compiled map index, and
-  original-offset tracking.
-- Implement immutable `createDetector()` closures.
-- Add `check`, `isClean`, `findAll`, and `filter` contract tests.
-- Use tiny test dictionaries rather than the production corpus.
+- **Status:** Complete.
+- [x] Implement normalization, Unicode tokenization, the compiled map index, and
+      original-offset tracking.
+- [x] Implement immutable `createDetector()` closures.
+- [x] Add `check`, `isClean`, `findAll`, and `filter` contract tests.
+- [x] Use tiny test dictionaries rather than the production corpus.
 
 **Gate:** boundary, Unicode, repeated occurrence, early exit, callback safety,
 and replacement semantics pass without optimizing prematurely.
