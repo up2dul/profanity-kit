@@ -1,6 +1,6 @@
 # Profanity Kit — Implementation Plan
 
-**Status:** Phase 3 complete; Phase 4 is next
+**Status:** Phase 4 complete; Phase 5 is next
 
 The plan converts the API contract and ADRs into small validation gates. A phase
 is complete only when its evidence exists; later phases may revise provisional
@@ -60,14 +60,16 @@ the initial corpora carry project-curated, human-reviewed provenance metadata.
 
 ## Phase 4 — Performance evidence
 
-- Run the benchmark matrix against real corpora.
-- Measure consumer bundles in raw, minified, gzip, and Brotli forms.
-- Compare the simplest relevant competitors without tailoring benchmarks to a
-  predetermined winner.
-- Set regression budgets from measured baselines.
+- **Status:** Complete.
+- [x] Run the benchmark matrix against real corpora.
+- [x] Measure consumer bundles in raw, minified, gzip, and Brotli forms.
+- [x] Define neutral comparison fixtures and document the constraints on
+      equivalent, licensed competitor comparisons.
+- [x] Set regression budgets from measured baselines.
 
 **Gate:** published performance claims are reproducible and CI catches material
-bundle regressions.
+bundle regressions. Packed-artifact benchmarks and bundle reports are checked in
+`reports/performance/` and `reports/bundles/`, with CI-enforced budgets.
 
 ## Phase 5 — Documentation MVP
 
