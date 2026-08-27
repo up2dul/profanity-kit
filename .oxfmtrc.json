@@ -1,0 +1,28 @@
+{
+  "$schema": "./node_modules/oxfmt/configuration_schema.json",
+  "printWidth": 80,
+  "useTabs": false,
+  "tabWidth": 2,
+  "singleQuote": false,
+  "jsxSingleQuote": false,
+  "arrowParens": "always",
+  "semi": true,
+  "trailingComma": "es5",
+  "quoteProps": "as-needed",
+  "bracketSpacing": true,
+  "bracketSameLine": false,
+  "sortImports": true,
+  "sortTailwindcss": {
+    "attributes": ["classList"],
+    "functions": ["clsx", "cn", "cx", "cva", "tv", "tw"]
+  },
+  "ignorePatterns": [
+    "**/dist/**",
+    "**/public/**",
+    "**/node_modules/**",
+    "**/.astro/**",
+    "**/.agents/**"
+  ],
+  "svelte": false,
+  "jsdoc": true
+}
