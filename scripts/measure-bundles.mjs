@@ -47,7 +47,10 @@ export const detector = createDetector({ languages: [english, indonesian] });
 `,
 };
 
-const measurementTolerance = 0.1;
+// Vite/Rollup can emit small bundle-size differences across supported Node/OS
+// combinations. Keep the report useful as a regression guard without requiring
+// compressed byte counts to be identical across build environments.
+const measurementTolerance = 0.2;
 
 const installEnvironment = {
   ...process.env,
