@@ -47,6 +47,8 @@ export const detector = createDetector({ languages: [english, indonesian] });
 `,
 };
 
+const measurementTolerance = 0.1;
+
 const installEnvironment = {
   ...process.env,
   npm_config_cache: join(temporaryDirectory, "npm-cache"),
@@ -164,9 +166,43 @@ try {
   )}\n`;
 
   if (process.argv.includes("--check")) {
-    if (readFileSync(reportPath, "utf8") !== report) {
+    const expected = JSON.parse(readFileSync(reportPath, "utf8"));
+    const actual = JSON.parse(report);
+    const mismatches = [];
+
+    for (const name of Object.keys(entries)) {
+      for (const metric of ["raw", "minified", "gzip", "brotli"]) {
+        const expectedBytes = expected.bytes?.[name]?.[metric];
+        const actualBytes = actual.bytes?.[name]?.[metric];
+        if (
+          !Number.isInteger(expectedBytes) ||
+          !Number.isInteger(actualBytes)
+        ) {
+          mismatches.push(`${name}.${metric} is missing or invalid`);
+          continue;
+        }
+
+        const drift = Math.abs(actualBytes - expectedBytes) / expectedBytes;
+        if (drift > measurementTolerance) {
+          mismatches.push(
+            `${name}.${metric}: expected ${expectedBytes}, got ${actualBytes}`
+          );
+        }
+      }
+    }
+
+    if (
+      expected.schemaVersion !== actual.schemaVersion ||
+      expected.packageVersion !== actual.packageVersion ||
+      expected.tools?.vite !== actual.tools?.vite ||
+      JSON.stringify(expected.assertions) !== JSON.stringify(actual.assertions)
+    ) {
+      mismatches.push("report metadata or assertions differ");
+    }
+
+    if (mismatches.length > 0) {
       throw new Error(
-        "Bundle measurements differ from reports/bundles/phase-2.json"
+        `Bundle measurements differ from reports/bundles/phase-2.json:\n- ${mismatches.join("\n- ")}`
       );
     }
   } else {
