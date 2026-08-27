@@ -1,6 +1,6 @@
 # Profanity Kit — Implementation Plan
 
-**Status:** Phase 4 complete; Phase 5 is next
+**Status:** Phase 5 complete; Phase 6 is next
 
 The plan converts the API contract and ADRs into small validation gates. A phase
 is complete only when its evidence exists; later phases may revise provisional
@@ -73,14 +73,18 @@ bundle regressions. Packed-artifact benchmarks and bundle reports are checked in
 
 ## Phase 5 — Documentation MVP
 
-- Set up pinned Nimbus and generated API Markdown.
-- Write quick start, language selection, custom dictionary, allowlist, matching
-  semantics, Zod recipe, unsupported features, and migration-oriented examples.
-- Build the Svelte playground island.
-- Generate Markdown twins, `llms.txt`, and `llms-full.txt` from shared sources.
+- **Status:** Complete.
+- [x] Set up pinned Nimbus and generated API Markdown.
+- [x] Write quick start, language selection, custom dictionary, allowlist,
+      matching semantics, Zod recipe, unsupported features, and
+      migration-oriented examples.
+- [x] Build the Svelte playground island.
+- [x] Generate Markdown twins, `llms.txt`, and `llms-full.txt` from shared
+      sources.
 
 **Gate:** documentation builds in CI, code samples compile, and playground state
-produces copyable code consistent with the API.
+produces copyable code consistent with the API. CI builds the package before the
+Astro site, and Pagefind indexes the generated documentation.
 
 ## Phase 6 — Release rehearsal and integration
 
