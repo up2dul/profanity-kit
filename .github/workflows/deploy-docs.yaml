@@ -1,0 +1,23 @@
+name: Deploy Docs to CF Workers
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - apps/docs
+      - "!apps/docs/AGENTS.md"
+      - "!apps/docs/tsconfig.json"
+      - .github/workflows/deploy-docs.yaml
+jobs:
+  deploy:
+    name: Deploy Docs
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+      - name: Build & Deploy Worker
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          workingDirectory: apps/docs
