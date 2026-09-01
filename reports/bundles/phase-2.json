@@ -13,28 +13,28 @@
       "brotli": 1591
     },
     "root": {
-      "raw": 8107,
-      "minified": 5209,
-      "gzip": 1881,
-      "brotli": 1656
+      "raw": 10962,
+      "minified": 7070,
+      "gzip": 2539,
+      "brotli": 2295
     },
     "english": {
-      "raw": 372,
-      "minified": 366,
-      "gzip": 267,
-      "brotli": 230
+      "raw": 3374,
+      "minified": 2374,
+      "gzip": 897,
+      "brotli": 875
     },
     "indonesian": {
-      "raw": 390,
-      "minified": 381,
-      "gzip": 278,
-      "brotli": 239
+      "raw": 1639,
+      "minified": 1152,
+      "gzip": 627,
+      "brotli": 587
     },
     "combined": {
-      "raw": 7995,
-      "minified": 5067,
-      "gzip": 1908,
-      "brotli": 1684
+      "raw": 12148,
+      "minified": 7846,
+      "gzip": 2959,
+      "brotli": 2661
     }
   },
   "assertions": {

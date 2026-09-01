@@ -6,13 +6,13 @@
   "samples": 5,
   "measurements": {
     "initialization.english": {
-      "medianMs": 20.849
+      "medianMs": 595.503
     },
     "initialization.oneLanguage": {
-      "medianMs": 17.833
+      "medianMs": 288.682
     },
     "initialization.multipleLanguages": {
-      "medianMs": 39.576
+      "medianMs": 889.429
     },
     "check.shortNoMatch": {
       "medianMs": 4.453
@@ -38,13 +38,13 @@
   },
   "budgets": {
     "initialization.english": {
-      "maxMedianMs": 62.547
+      "maxMedianMs": 1786.509
     },
     "initialization.oneLanguage": {
-      "maxMedianMs": 53.499
+      "maxMedianMs": 866.046
     },
     "initialization.multipleLanguages": {
-      "maxMedianMs": 118.728
+      "maxMedianMs": 2668.287
     },
     "check.shortNoMatch": {
       "maxMedianMs": 13.359

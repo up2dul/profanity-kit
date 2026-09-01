@@ -3,6 +3,7 @@ import { describe, expect, expectTypeOf, it } from "vitest";
 import { createDetector as createCoreDetector } from "./core/index.js";
 import type { ProfanityDetector } from "./core/types.js";
 import { createDetector } from "./index.js";
+import { english } from "./languages/en.js";
 import { indonesian } from "./languages/id.js";
 
 describe("public entry points", () => {
@@ -35,5 +36,50 @@ describe("public entry points", () => {
     expect(detector.findAll("ass asshole").map((match) => match.value)).toEqual(
       ["ass", "asshole"]
     );
+  });
+
+  it("detects expanded English dictionary entries added in v0.2.0", () => {
+    const detector = createDetector();
+
+    expect(detector.check("dickhead")).toBe(true);
+    expect(detector.check("bullshit")).toBe(true);
+    expect(detector.check("motherfucker")).toBe(true);
+    expect(detector.check("cunt")).toBe(true);
+    expect(detector.check("wanker")).toBe(true);
+    expect(detector.check("twat")).toBe(true);
+    expect(detector.check("slut")).toBe(true);
+    expect(
+      detector
+        .findAll("what a crap dumbass move you fucking wanker")
+        .map((match) => match.value)
+    ).toEqual(["crap", "dumbass", "fucking", "wanker"]);
+  });
+
+  it("detects expanded Indonesian dictionary entries added in v0.2.0", () => {
+    const detector = createCoreDetector({ languages: [indonesian] });
+
+    expect(detector.check("bajingan")).toBe(true);
+    expect(detector.check("brengsek")).toBe(true);
+    expect(detector.check("jancuk")).toBe(true);
+    expect(detector.check("pukimak")).toBe(true);
+    expect(detector.check("kampret")).toBe(true);
+    expect(detector.check("ngentot")).toBe(true);
+    expect(
+      detector
+        .findAll("dasar brengsek kampret goblok kau jancuk")
+        .map((match) => match.value)
+    ).toEqual(["brengsek", "kampret", "goblok", "jancuk"]);
+  });
+
+  it("keeps English and Indonesian expanded packs isolated", () => {
+    const enDetector = createDetector();
+    const idDetector = createCoreDetector({ languages: [indonesian] });
+
+    expect(enDetector.check("brengsek")).toBe(false);
+    expect(idDetector.check("bullshit")).toBe(false);
+
+    const mixed = createCoreDetector({ languages: [english, indonesian] });
+    expect(mixed.check("brengsek")).toBe(true);
+    expect(mixed.check("bullshit")).toBe(true);
   });
 });

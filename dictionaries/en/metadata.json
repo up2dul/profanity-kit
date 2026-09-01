@@ -1,10 +1,10 @@
 {
   "code": "en",
   "name": "English",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "source": "project-curated",
   "license": "MIT",
-  "retrievedAt": "2026-08-27",
+  "retrievedAt": "2026-08-31",
   "reviewStatus": "human-reviewed",
   "reviewer": "project-maintainers"
 }
