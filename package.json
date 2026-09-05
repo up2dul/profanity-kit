@@ -35,6 +35,8 @@
     "package:measure:check": "node scripts/measure-bundles.mjs --check",
     "package:validate": "node scripts/validate-package.mjs",
     "prepare": "lefthook install",
+    "release": "pnpm build && changeset publish",
+    "release:verify": "node scripts/verify-registry-release.mjs",
     "test": "vitest run --passWithNoTests",
     "test:watch": "vitest",
     "typecheck": "pnpm --recursive --if-present typecheck"
