@@ -42,7 +42,7 @@ jobs:
 
   version:
     name: Update release pull request
-    if: needs.select-mode.outputs.mode == "version"
+    if: ${{ needs.select-mode.outputs.mode == 'version' }}
     needs: select-mode
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -74,7 +74,7 @@ jobs:
 
   publish:
     name: Publish packages
-    if: needs.select-mode.outputs.mode == "publish"
+    if: ${{ needs.select-mode.outputs.mode == 'publish' }}
     needs: select-mode
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -114,5 +114,5 @@ jobs:
           create-github-releases: true
 
       - name: Verify published registry artifact
-        if: steps.changesets.outputs.published == "true"
+        if: ${{ steps.changesets.outputs.published == 'true' }}
         run: pnpm release:verify
