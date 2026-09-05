@@ -24,6 +24,9 @@ Use Conventional Commit messages, such as `feat: add a detector option` or
 Run `pnpm changeset` for user-visible package changes. Documentation-only and
 internal maintenance changes may omit a changeset.
 
+Maintainers should follow the [release rehearsal runbook](docs/releasing.md)
+for prerelease versioning, npm Trusted Publishing, and registry verification.
+
 ## Dictionary contributions
 
 To change an existing language dictionary:
