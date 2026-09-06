@@ -1,5 +1,11 @@
 # profanity-kit
 
+## 0.1.0-next.1
+
+### Patch Changes
+
+- 000a681: Publish the prerelease through npm Trusted Publishing with verifiable provenance.
+
 ## 0.1.0-next.0
 
 ### Minor Changes
