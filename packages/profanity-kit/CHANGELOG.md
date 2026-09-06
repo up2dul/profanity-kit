@@ -1,5 +1,11 @@
 # profanity-kit
 
+## 0.1.0-next.2
+
+### Patch Changes
+
+- 5c139d2: Publish prerelease versions through the documented `next` distribution tag and link package metadata to the deployed documentation.
+
 ## 0.1.0-next.1
 
 ### Patch Changes
