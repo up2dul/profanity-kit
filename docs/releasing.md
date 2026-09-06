@@ -40,6 +40,14 @@ The publish job is the only job with `id-token: write`. It uses a GitHub-hosted
 runner, npm 11.19.1, and no `NODE_AUTH_TOKEN`. Do not add an npm publishing
 token to repository secrets.
 
+Changesets normally publishes a package whose entire registry history consists
+of prereleases to `latest`, even while prerelease mode is active. The release
+wrapper temporarily masks `.changeset/pre.json` only while invoking Changesets
+with its recorded tag, then restores the file. This keeps new-package releases
+on `next` without replacing Changesets' Git tag and GitHub release reporting.
+The bootstrap version may remain on `latest` until the first stable release;
+npm Trusted Publishing authenticates publication but not later dist-tag edits.
+
 ## One-time package bootstrap
 
 npm requires a package to exist before a trusted publisher can be configured.
