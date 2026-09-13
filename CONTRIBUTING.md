@@ -39,6 +39,8 @@ To change an existing language dictionary:
 
 To add a new language pack:
 
+- Open an issue before beginning substantial corpus work so scope and review
+  expectations can be agreed first.
 - Create `dictionaries/<language>/words.txt` and `metadata.json`.
 - Run `pnpm dictionary:generate` to create the generated module.
 - Add `packages/profanity-kit/src/languages/<language>.ts` and expose it in

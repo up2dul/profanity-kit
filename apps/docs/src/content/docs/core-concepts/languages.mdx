@@ -8,6 +8,19 @@ sidebar:
 Profanity Kit separates its detector engine from language dictionaries. Choose
 the entry point based on who should control the language data.
 
+English and Indonesian are available as built-in language packs today. You can
+use either independently, combine both for multilingual input, or provide a
+custom pack for another language or community.
+
+## Available languages
+
+| Language   | Import                       |
+| ---------- | ---------------------------- |
+| English    | `profanity-kit/languages/en` |
+| Indonesian | `profanity-kit/languages/id` |
+
+## Choose an entry point
+
 | Import               | Dictionaries               | Best for                                                          |
 | -------------------- | -------------------------- | ----------------------------------------------------------------- |
 | `profanity-kit`      | English included           | English-only applications and shortest setup                      |
@@ -82,3 +95,17 @@ selection or bundle composition should be explicit.
 You can also supply a custom [`LanguagePack`](/api/types#languagepack).
 See [Customization](/guides/customization#create-a-custom-language-pack)
 for a complete example.
+
+## More languages
+
+More built-in language packs are planned, but there is no committed language
+list or release schedule. Until a built-in pack is available, applications can
+provide a custom language pack through the same core API.
+
+Native speakers and community reviewers are welcome to propose or contribute a
+new built-in pack. Open a
+[GitHub issue](https://github.com/up2dul/profanity-kit/issues) before beginning
+substantial corpus work, then follow the
+[contribution guide](https://github.com/up2dul/profanity-kit/blob/main/CONTRIBUTING.md#dictionary-contributions)
+and
+[dictionary review policy](https://github.com/up2dul/profanity-kit/blob/main/dictionaries/README.md).

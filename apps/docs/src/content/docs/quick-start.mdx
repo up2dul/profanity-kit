@@ -24,7 +24,28 @@ detector.filter("hide the shit"); // "hide the ****"
 ```
 
 `findAll()` returns ordered match details when you need offsets or language
-codes. Next, choose [languages](/core-concepts/languages) or learn [matching](/core-concepts/matching).
+codes.
+
+## Combine languages
+
+Profanity Kit includes built-in English and Indonesian packs. Import the
+dictionary-free core to use either pack independently or combine them in one
+detector:
+
+```ts
+import { createDetector } from "profanity-kit/core";
+import { english } from "profanity-kit/languages/en";
+import { indonesian } from "profanity-kit/languages/id";
+
+const detector = createDetector({ languages: [english, indonesian] });
+
+detector.check("This contains shit"); // true
+detector.check("Dasar goblok"); // true
+```
+
+See [Languages & Dictionaries](/core-concepts/languages) to select one pack,
+combine packs, or create a custom pack. You can also learn how
+[matching works](/core-concepts/matching).
 
 ## Compatibility
 
