@@ -1,5 +1,12 @@
 # profanity-kit
 
+## 0.2.0
+
+### Minor Changes
+
+- c6a62ef: Revise and expand the reviewed English and Indonesian dictionaries, adding
+  new entries and removing excluded variants to improve language-pack quality.
+
 ## 0.1.0
 
 ### Minor Changes
