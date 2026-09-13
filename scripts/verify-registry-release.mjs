@@ -27,15 +27,19 @@ const run = (command, arguments_, options = {}) =>
   });
 const wait = (milliseconds) =>
   new Promise((resolvePromise) => setTimeout(resolvePromise, milliseconds));
+const registryLookupAttempts = 37;
+const registryLookupIntervalMs = 5_000;
 
 const readRegistryManifest = async () => {
   let lastError;
-  for (let attempt = 1; attempt <= 12; attempt += 1) {
+  for (let attempt = 1; attempt <= registryLookupAttempts; attempt += 1) {
     try {
       return JSON.parse(run("npm", ["view", specification, "--json"]));
     } catch (error) {
       lastError = error;
-      if (attempt < 12) await wait(5_000);
+      if (attempt < registryLookupAttempts) {
+        await wait(registryLookupIntervalMs);
+      }
     }
   }
   throw lastError;
