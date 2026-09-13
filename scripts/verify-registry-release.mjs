@@ -77,8 +77,8 @@ try {
 import { createDetector as createCoreDetector } from "profanity-kit/core";
 import { indonesian } from "profanity-kit/languages/id";
 
-if (!createDetector().check("englishsentinel")) throw new Error("root registry import failed");
-if (!createCoreDetector({ languages: [indonesian] }).check("indonesiansentinel")) throw new Error("language registry import failed");
+if (!createDetector().check("bullshit")) throw new Error("root registry import failed");
+if (!createCoreDetector({ languages: [indonesian] }).check("brengsek")) throw new Error("language registry import failed");
 `
   );
   run(process.execPath, [join(temporaryDirectory, "verify.mjs")], {
