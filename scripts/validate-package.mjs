@@ -74,9 +74,9 @@ import { createDetector as createCoreDetector } from "profanity-kit/core";
 import { english } from "profanity-kit/languages/en";
 import { indonesian } from "profanity-kit/languages/id";
 
-if (!createDetector().check("englishsentinel")) throw new Error("root ESM failed");
-if (!createCoreDetector({ languages: [english] }).check("englishsentinel")) throw new Error("English ESM failed");
-if (!createCoreDetector({ languages: [indonesian] }).check("indonesiansentinel")) throw new Error("Indonesian ESM failed");
+if (!createDetector().check("bullshit")) throw new Error("root ESM failed");
+if (!createCoreDetector({ languages: [english] }).check("bullshit")) throw new Error("English ESM failed");
+if (!createCoreDetector({ languages: [indonesian] }).check("brengsek")) throw new Error("Indonesian ESM failed");
 `
   );
   writeFileSync(
@@ -86,8 +86,8 @@ const { createDetector: createCoreDetector } = require("profanity-kit/core");
 const { english } = require("profanity-kit/languages/en");
 const { indonesian } = require("profanity-kit/languages/id");
 
-if (!createDetector().check("englishsentinel")) throw new Error("root require failed");
-if (!createCoreDetector({ languages: [english, indonesian] }).check("indonesiansentinel")) throw new Error("combined require failed");
+if (!createDetector().check("bullshit")) throw new Error("root require failed");
+if (!createCoreDetector({ languages: [english, indonesian] }).check("brengsek")) throw new Error("combined require failed");
 `
   );
   run(process.execPath, [join(temporaryDirectory, "esm.mjs")]);
@@ -139,7 +139,7 @@ createDetector({ languages: [indonesian] });
     join(temporaryDirectory, "vite-entry.ts"),
     `import { createDetector } from "profanity-kit/core";
 import { indonesian } from "profanity-kit/languages/id";
-document.body.textContent = String(createDetector({ languages: [indonesian] }).check("indonesiansentinel"));
+document.body.textContent = String(createDetector({ languages: [indonesian] }).check("brengsek"));
 `
   );
   run(

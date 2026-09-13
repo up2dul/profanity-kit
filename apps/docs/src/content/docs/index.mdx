@@ -1,6 +1,6 @@
 ---
 title: Profanity Kit
-description: A small, Unicode-aware profanity detector for TypeScript.
+description: A multilingual, Unicode-aware profanity detector for TypeScript.
 sidebar:
   order: 1
   badge: Start here
@@ -8,10 +8,14 @@ sidebar:
 
 ## Introduction
 
-Profanity Kit is a TypeScript toolkit for detecting configured profane words as
-complete, Unicode-aware tokens. It provides detection mechanisms, language
-dictionaries, and customization primitives—not a universal list that every
-application must reject.
+Profanity Kit is a language-pack-based TypeScript toolkit built for multilingual
+applications. Select and combine only the languages you need, or provide custom
+packs for specific communities. English and Indonesian packs are available
+today, with more built-in packs planned.
+
+It detects configured profane words as complete, Unicode-aware tokens and
+provides customization primitives—not a universal list that every application
+must reject.
 
 "Profanity" commonly means language considered offensive or taboo in a social
 context; its meaning and impact vary by community and situation. See the
@@ -37,6 +41,15 @@ That variation is why dictionaries stay explicit and detectors immutable.
     <div class="font-medium text-foreground">Playground</div>
     <div class="mt-0.5 text-sm text-muted-foreground">
       Try matching interactively
+    </div>
+  </a>
+  <a
+    href="/core-concepts/languages"
+    class="block rounded-lg border border-border p-4 transition-colors hover:border-border-strong no-underline"
+  >
+    <div class="font-medium text-foreground">Languages & Dictionaries</div>
+    <div class="mt-0.5 text-sm text-muted-foreground">
+      Use English, Indonesian, or custom packs
     </div>
   </a>
 </div>

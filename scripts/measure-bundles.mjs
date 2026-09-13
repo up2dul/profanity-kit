@@ -121,27 +121,21 @@ try {
     join(outputDirectory, "combined.min.js"),
     "utf8"
   );
-  if (
-    coreBundle.includes("englishsentinel") ||
-    coreBundle.includes("indonesiansentinel")
-  ) {
+  if (coreBundle.includes("bullshit") || coreBundle.includes("brengsek")) {
     throw new Error("Core bundle contains built-in dictionary data");
   }
-  if (
-    !rootBundle.includes("englishsentinel") ||
-    rootBundle.includes("indonesiansentinel")
-  ) {
+  if (!rootBundle.includes("bullshit") || rootBundle.includes("brengsek")) {
     throw new Error("Root bundle language isolation failed");
   }
   if (
-    !indonesianBundle.includes("indonesiansentinel") ||
-    indonesianBundle.includes("englishsentinel")
+    !indonesianBundle.includes("brengsek") ||
+    indonesianBundle.includes("bullshit")
   ) {
     throw new Error("Indonesian bundle language isolation failed");
   }
   if (
-    !combinedBundle.includes("englishsentinel") ||
-    !combinedBundle.includes("indonesiansentinel")
+    !combinedBundle.includes("bullshit") ||
+    !combinedBundle.includes("brengsek")
   ) {
     throw new Error("Combined bundle is missing language data");
   }

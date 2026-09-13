@@ -11,16 +11,16 @@ describe("public entry points", () => {
     const detector = createDetector();
 
     expectTypeOf(detector).toEqualTypeOf<ProfanityDetector<"en">>();
-    expect(detector.check("englishsentinel")).toBe(true);
-    expect(detector.check("indonesiansentinel")).toBe(false);
+    expect(detector.check("bullshit")).toBe(true);
+    expect(detector.check("brengsek")).toBe(false);
   });
 
   it("keeps core dictionary-free and infers explicit language codes", () => {
     const detector = createCoreDetector({ languages: [indonesian] });
 
     expectTypeOf(detector).toEqualTypeOf<ProfanityDetector<"id">>();
-    expect(detector.check("indonesiansentinel")).toBe(true);
-    expect(detector.check("englishsentinel")).toBe(false);
+    expect(detector.check("brengsek")).toBe(true);
+    expect(detector.check("bullshit")).toBe(false);
   });
 
   it("freezes built-in pack data", () => {
@@ -38,7 +38,7 @@ describe("public entry points", () => {
     );
   });
 
-  it("detects expanded English dictionary entries added in v0.2.0", () => {
+  it("detects reviewed English dictionary entries", () => {
     const detector = createDetector();
 
     expect(detector.check("dickhead")).toBe(true);
@@ -55,7 +55,7 @@ describe("public entry points", () => {
     ).toEqual(["crap", "dumbass", "fucking", "wanker"]);
   });
 
-  it("detects expanded Indonesian dictionary entries added in v0.2.0", () => {
+  it("detects reviewed Indonesian dictionary entries", () => {
     const detector = createCoreDetector({ languages: [indonesian] });
 
     expect(detector.check("bajingan")).toBe(true);
@@ -71,7 +71,7 @@ describe("public entry points", () => {
     ).toEqual(["brengsek", "kampret", "goblok", "jancuk"]);
   });
 
-  it("keeps English and Indonesian expanded packs isolated", () => {
+  it("keeps built-in English and Indonesian packs isolated", () => {
     const enDetector = createDetector();
     const idDetector = createCoreDetector({ languages: [indonesian] });
 
@@ -81,5 +81,15 @@ describe("public entry points", () => {
     const mixed = createCoreDetector({ languages: [english, indonesian] });
     expect(mixed.check("brengsek")).toBe(true);
     expect(mixed.check("bullshit")).toBe(true);
+  });
+
+  it("keeps intentionally excluded variants clean", () => {
+    const enDetector = createDetector();
+    const idDetector = createCoreDetector({ languages: [indonesian] });
+
+    expect(enDetector.check("fuk")).toBe(false);
+    expect(enDetector.check("fuck")).toBe(true);
+    expect(idDetector.check("ngentotin")).toBe(false);
+    expect(idDetector.check("ngentot")).toBe(true);
   });
 });

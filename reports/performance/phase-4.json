@@ -6,66 +6,66 @@
   "samples": 5,
   "measurements": {
     "initialization.english": {
-      "medianMs": 595.503
+      "medianMs": 1101.126
     },
     "initialization.oneLanguage": {
-      "medianMs": 288.682
+      "medianMs": 498.971
     },
     "initialization.multipleLanguages": {
-      "medianMs": 889.429
+      "medianMs": 1610.948
     },
     "check.shortNoMatch": {
-      "medianMs": 4.453
+      "medianMs": 4.052
     },
     "check.shortEarlyMatch": {
-      "medianMs": 3.531
+      "medianMs": 2.295
     },
     "check.longNoMatch": {
-      "medianMs": 612.804
+      "medianMs": 575.046
     },
     "check.longLateMatch": {
-      "medianMs": 616.932
+      "medianMs": 567.576
     },
     "findAll.repeatedMatches": {
-      "medianMs": 10.722
+      "medianMs": 7.968
     },
     "check.indonesian": {
-      "medianMs": 5.612
+      "medianMs": 5.162
     },
     "check.combined": {
-      "medianMs": 3.987
+      "medianMs": 3.56
     }
   },
   "budgets": {
     "initialization.english": {
-      "maxMedianMs": 1786.509
+      "maxMedianMs": 3303.378
     },
     "initialization.oneLanguage": {
-      "maxMedianMs": 866.046
+      "maxMedianMs": 1496.913
     },
     "initialization.multipleLanguages": {
-      "maxMedianMs": 2668.287
+      "maxMedianMs": 4832.844
     },
     "check.shortNoMatch": {
-      "maxMedianMs": 13.359
+      "maxMedianMs": 12.156
     },
     "check.shortEarlyMatch": {
-      "maxMedianMs": 10.593
+      "maxMedianMs": 6.885
     },
     "check.longNoMatch": {
-      "maxMedianMs": 1838.412
+      "maxMedianMs": 1725.138
     },
     "check.longLateMatch": {
-      "maxMedianMs": 1850.796
+      "maxMedianMs": 1702.728
     },
     "findAll.repeatedMatches": {
-      "maxMedianMs": 32.166
+      "maxMedianMs": 23.904
     },
     "check.indonesian": {
-      "maxMedianMs": 16.836
+      "maxMedianMs": 15.486
     },
     "check.combined": {
-      "maxMedianMs": 11.961
+      "maxMedianMs": 10.68
     }
   },
   "comparison": {
