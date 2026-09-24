@@ -11,6 +11,7 @@ import type {
 } from "./types.js";
 
 const DEFAULT_REPLACEMENT = "*";
+const WORD_ENTRY_PATTERN = /^[\p{L}\p{M}\p{N}]+$/u;
 
 interface CompiledEntry<TLanguage extends string> {
   readonly normalized: string;
@@ -32,10 +33,10 @@ function configurationError(
 }
 
 function validateDictionaryEntry(value: unknown, label: string): string {
-  if (typeof value !== "string" || value.trim().length === 0) {
+  if (typeof value !== "string" || !WORD_ENTRY_PATTERN.test(value)) {
     configurationError(
       "INVALID_DICTIONARY_ENTRY",
-      `${label} entries must be non-empty strings`
+      `${label} entries must be exactly one Unicode word token`
     );
   }
 

@@ -36,3 +36,9 @@ moderation system. It intentionally does not provide phrase matching,
 substring matching, aggressive leetspeak expansion, or contextual moderation.
 Create a detector with the configuration you need and apply human and
 product-specific moderation policy around its results.
+
+A match is not proof that a statement is abusive: some words have ordinary
+meanings in other contexts. The Indonesian built-in pack omits `anjing`, `babi`,
+`wedus`, `sempak`, and `setan` for that reason, while retaining the
+profanity-specific form `anjg`. Add context-dependent terms to your own
+`blockList` when your application needs stricter detection.

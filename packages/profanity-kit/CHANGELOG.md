@@ -1,5 +1,14 @@
 # profanity-kit
 
+## 1.0.0
+
+### Major Changes
+
+- Stabilize the detector contract for v1. Validate every dictionary and custom
+  list entry as one Unicode word token, and remove context-dependent literal terms
+  from the Indonesian built-in pack. Both language packs start at data version
+  1.0.0.
+
 ## 0.2.0
 
 ### Minor Changes

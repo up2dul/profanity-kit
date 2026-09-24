@@ -92,4 +92,13 @@ describe("public entry points", () => {
     expect(idDetector.check("ngentotin")).toBe(false);
     expect(idDetector.check("ngentot")).toBe(true);
   });
+
+  it("applies the reviewed Indonesian ambiguous-word exclusions", () => {
+    const detector = createCoreDetector({ languages: [indonesian] });
+
+    for (const word of ["anjing", "babi", "wedus", "sempak", "setan"]) {
+      expect(detector.check(word)).toBe(false);
+    }
+    expect(detector.check("anjg")).toBe(true);
+  });
 });

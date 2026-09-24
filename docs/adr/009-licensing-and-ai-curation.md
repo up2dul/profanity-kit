@@ -1,6 +1,6 @@
 # ADR-009 — Licensing and AI-assisted dictionary curation
 
-**Status:** Provisional
+**Status:** Accepted
 
 ## Context
 

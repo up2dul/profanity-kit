@@ -1,6 +1,6 @@
 # ADR-004 — Dictionary architecture and provenance
 
-**Status:** Provisional
+**Status:** Accepted
 
 ## Context
 
@@ -19,6 +19,19 @@ CI regenerates and fails on diff. Generated files are never edited manually.
 Built-in packs expose readonly word data and a lightweight data version. Full
 provenance metadata is a separate export so normal imports do not pay for it.
 Detectors snapshot pack data and compile independent indexes.
+
+Curate for unambiguous profanity. Omit ordinary literal words whose insulting
+meaning depends on context, including `anjing`, `babi`, `wedus`, `sempak`, and
+`setan` in Indonesian; retain profanity-specific altered forms such as `anjg`.
+Applications that need context-dependent terms can add them in `blockList`.
+Maintain a reviewed evaluation corpus with `match`, `clean`, and
+`excluded-ambiguous` cases.
+
+Version each pack independently: major for a fundamental curation-policy or
+compatibility-boundary change, minor for reviewed word additions or removals,
+and patch for metadata/provenance corrections that do not change the effective
+word set. Update only the affected pack versions. The package version remains
+managed separately by Changesets.
 
 ## Alternatives considered
 

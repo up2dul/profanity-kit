@@ -127,6 +127,34 @@ describe("createDetector", () => {
     });
   });
 
+  it("applies allowlist matches globally across locale indexes and pack order", () => {
+    const defaultLocale = {
+      code: "en",
+      name: "Default locale test pack",
+      version: "0.0.0-test",
+      words: ["ısparta"],
+    } as const satisfies LanguagePack<"en">;
+    const turkishLocale = {
+      code: "tr",
+      name: "Turkish locale test pack",
+      version: "0.0.0-test",
+      words: ["city"],
+      normalization: { caseLocale: "tr" },
+    } as const satisfies LanguagePack<"tr">;
+
+    for (const languages of [
+      [defaultLocale, turkishLocale],
+      [turkishLocale, defaultLocale],
+    ] as const) {
+      const detector = createDetector({
+        languages,
+        allowList: ["ISPARTA"],
+      });
+
+      expect(detector.findAll("ısparta")).toEqual([]);
+    }
+  });
+
   it("filters from original segments with detector and per-call replacements", () => {
     const detector = createDetector({
       languages: [indonesian],
@@ -139,7 +167,50 @@ describe("createDetector", () => {
     expect(detector.filter("goblok", { replacement: "😀" })).toBe(
       "😀😀😀😀😀😀"
     );
+    expect(detector.filter("😀 goblok", { replacement: "😀" })).toBe(
+      "😀 😀😀😀😀😀😀"
+    );
     expect(detector.filter("kalimat aman")).toBe("kalimat aman");
+  });
+
+  it("accepts only one token in pack words and custom lists", () => {
+    const validPack = {
+      code: "unicode",
+      name: "Unicode test pack",
+      version: "0.0.0-test",
+      words: ["café", "e\u0301vil", "word2"],
+    } as const satisfies LanguagePack<"unicode">;
+    const detector = createDetector({
+      languages: [validPack],
+      blockList: ["naïve", "word3"],
+      allowList: ["resume\u0301"],
+    });
+
+    expect(detector.check("CAFÉ e\u0301vil word2 naïve word3")).toBe(true);
+
+    const invalidEntries = [
+      "",
+      "bad word",
+      "bad-word",
+      "bad_word",
+      " ",
+      "!",
+      " bad",
+      "bad ",
+    ];
+    for (const entry of invalidEntries) {
+      expect(() =>
+        createDetector({ languages: [english], blockList: [entry] })
+      ).toThrowError(ProfanityKitError);
+      expect(() =>
+        createDetector({ languages: [english], allowList: [entry] })
+      ).toThrowError(ProfanityKitError);
+      expect(() =>
+        createDetector({
+          languages: [{ ...english, words: [entry] }],
+        })
+      ).toThrowError(ProfanityKitError);
+    }
   });
 
   it("keeps methods callback-safe and exposes an immutable detector", () => {

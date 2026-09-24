@@ -1,6 +1,6 @@
 # ADR-003 — Unicode matching algorithm
 
-**Status:** Provisional
+**Status:** Accepted
 
 ## Context
 
@@ -22,8 +22,9 @@ segments. Preserve original UTF-16 offsets while replacement length is based on
 Unicode code points.
 
 Default normalization is NFC followed by `toLowerCase()`. Language packs may
-declaratively select locale-aware casing later. Diacritics remain significant
-in the MVP, while the pipeline retains a future pack-level folding stage.
+declaratively select locale-aware casing. Diacritics remain significant.
+An allowlist entry suppresses a match under any configured normalization
+locale, regardless of pack order.
 
 ## Complexity
 
@@ -40,9 +41,10 @@ would add correctness risks before measurements show a need.
 
 ## Consequences
 
-`ass` and `asshole` require separate entries. Phrase matching, aggressive
-leetspeak handling, and contextual moderation remain unsupported. Boundary and
-offset behavior becomes a public compatibility contract and needs corpus tests.
+`ass` and `asshole` require separate entries. Pack words and custom list entries
+must each be one complete Unicode token. Phrase matching, aggressive leetspeak
+handling, and contextual moderation remain unsupported. Boundary, precedence,
+and offset behavior are public compatibility contracts covered by tests.
 
 ## Reconsider when
 

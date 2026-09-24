@@ -1,6 +1,6 @@
 # ADR-006 — Testing, performance, and bundle validation
 
-**Status:** Provisional
+**Status:** Accepted
 
 ## Context
 
@@ -10,10 +10,12 @@ budgets chosen before the real corpus and implementation would be misleading.
 
 ## Decision
 
-Use Vitest for runtime contracts and TSTyche for public type inference. Build
-the real npm tarball and test it through packed consumer fixtures covering Node
-ESM, Node `require()`, Vite, and TypeScript. Validate metadata with publint and
-types with Are The Types Wrong.
+Use Vitest for runtime contracts, including a maintainer-reviewed EN/ID
+evaluation corpus. Build the real npm tarball and test it through packed
+consumer fixtures covering Node ESM, Node `require()`, Vite, and TypeScript.
+Compile the TypeScript consumer fixture with `tsc` to validate public type
+inference. Validate metadata with publint and package types with Are The Types
+Wrong.
 
 Measure raw, minified, gzip, and Brotli consumer bundles for core, root, each
 language, combined languages, and optional metadata. Prove that Indonesian-only

@@ -31,8 +31,9 @@ An immutable `ProfanityDetector<"en">`.
 
 ### Throws
 
-Throws [`ProfanityKitError`](/api/types#profanitykiterror) for invalid dictionary
-entries or a replacement that is not exactly one Unicode code point.
+Throws [`ProfanityKitError`](/api/types#profanitykiterror) when a word entry is
+not exactly one Unicode token or a replacement is not exactly one Unicode code
+point.
 
 ### Example
 
@@ -76,7 +77,8 @@ Throws `ProfanityKitError` when:
 
 - `languages` is missing, not an array, or empty.
 - A pack, locale, or dictionary word is invalid.
-- A blocklist or allowlist entry is not a non-empty string.
+- A pack word, blocklist entry, or allowlist entry is not exactly one Unicode
+  word token (letters, combining marks, or numbers only).
 - `replacement` is not exactly one Unicode code point.
 
 ### Example

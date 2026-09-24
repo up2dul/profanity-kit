@@ -4,7 +4,6 @@ ancuruk
 anjay
 anjg
 anjim
-anjing
 anjir
 anjng
 anjrit
@@ -14,7 +13,6 @@ anyir
 asu
 asw
 asuwo
-babi
 bacod
 bacot
 bacotnya
@@ -182,8 +180,6 @@ qontol
 sange
 sarap
 sat
-sempak
-setan
 sial
 sialan
 sialanmu
@@ -218,4 +214,3 @@ tololmu
 tololnya
 tot
 tusbol
-wedus

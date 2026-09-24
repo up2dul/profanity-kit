@@ -1,6 +1,6 @@
 {
   "name": "profanity-kit",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "A lightweight, multilingual profanity detector for JavaScript and TypeScript.",
   "keywords": [
     "bad-word",

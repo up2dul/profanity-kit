@@ -17,7 +17,9 @@ language dictionaries
 ```
 
 `blockList` adds application-specific whole words. `allowList` suppresses a
-word even when it comes from a built-in pack. `replacement` sets the default
-single code point used by `filter()`.
+word even when it comes from a built-in pack. With multiple packs, allowlist
+precedence applies across every pack's normalization locale and does not depend
+on pack order. `replacement` sets the default single code point used by
+`filter()`.
 
 See [Customization](/guides/customization) for task-oriented recipes.
