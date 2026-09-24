@@ -26,15 +26,13 @@
 Profanity Kit is a language-pack-based profanity detection toolkit built for
 multilingual applications. Select and combine only the languages you need, or
 provide custom packs for specific communities. English and Indonesian packs
-are available today.
+are available today, with **more built-in languages coming soon!**
 
 It provides predictable, synchronous word filtering without a moderation
 service or an opaque machine-learning model. It is a deterministic profanity
 detection toolkit, not a contextual moderation or toxicity classifier.
 Matches are not judgments of intent: some words have ordinary meanings in other
-contexts. The Indonesian pack excludes `anjing`, `babi`, `wedus`, `sempak`, and
-`setan`, while retaining the profanity-specific form `anjg`. Applications can
-add context-dependent terms with their own `blockList`.
+contexts.
 
 ## Why Profanity Kit?
 
