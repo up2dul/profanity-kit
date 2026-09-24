@@ -122,6 +122,8 @@ prerelease. Before merging the release PR:
 4. Merge the release PR. The Release workflow publishes the exact version to
    npm through Trusted Publishing with provenance, creates the Git tag and
    GitHub release, and verifies the registry artifact.
+   The verifier retries registry metadata and tarball downloads to tolerate
+   npm's metadata/CDN propagation delay.
 5. Confirm `npm view profanity-kit@latest version` reports `1.0.0`, then test
    the registry artifact in the downstream app when updating its dependency.
 

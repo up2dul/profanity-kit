@@ -4,6 +4,8 @@ import { tmpdir } from "node:os";
 import { dirname, join, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { retryOperation } from "./retry-operation.mjs";
+
 const workspaceRoot = resolve(dirname(fileURLToPath(import.meta.url)), "..");
 const manifest = JSON.parse(
   readFileSync(
@@ -27,26 +29,31 @@ const run = (command, arguments_, options = {}) =>
   });
 const wait = (milliseconds) =>
   new Promise((resolvePromise) => setTimeout(resolvePromise, milliseconds));
-const registryLookupAttempts = 37;
+const registryLookupAttempts = 61;
 const registryLookupIntervalMs = 5_000;
-
-const readRegistryManifest = async () => {
-  let lastError;
-  for (let attempt = 1; attempt <= registryLookupAttempts; attempt += 1) {
-    try {
-      return JSON.parse(run("npm", ["view", specification, "--json"]));
-    } catch (error) {
-      lastError = error;
-      if (attempt < registryLookupAttempts) {
-        await wait(registryLookupIntervalMs);
-      }
-    }
-  }
-  throw lastError;
-};
+const packageInstallAttempts = 61;
+const packageInstallIntervalMs = 5_000;
 
 try {
-  const registryManifest = await readRegistryManifest();
+  const registryManifest = await retryOperation(
+    (attempt) =>
+      JSON.parse(
+        run("npm", ["view", specification, "--json"], {
+          env: {
+            ...process.env,
+            npm_config_cache: join(
+              temporaryDirectory,
+              `npm-cache-view-${attempt}`
+            ),
+          },
+        })
+      ),
+    {
+      attempts: registryLookupAttempts,
+      intervalMs: registryLookupIntervalMs,
+      wait,
+    }
+  );
   if (registryManifest.version !== manifest.version) {
     throw new Error(
       `Registry returned ${registryManifest.version} for ${specification}`
@@ -67,14 +74,34 @@ try {
     join(temporaryDirectory, "package.json"),
     `${JSON.stringify({ private: true, type: "module" }, null, 2)}\n`
   );
-  run("npm", [
-    "install",
-    "--save-exact",
-    "--ignore-scripts",
-    "--no-audit",
-    "--no-fund",
-    specification,
-  ]);
+  await retryOperation(
+    (attempt) =>
+      run(
+        "npm",
+        [
+          "install",
+          "--save-exact",
+          "--ignore-scripts",
+          "--no-audit",
+          "--no-fund",
+          specification,
+        ],
+        {
+          env: {
+            ...process.env,
+            npm_config_cache: join(
+              temporaryDirectory,
+              `npm-cache-install-${attempt}`
+            ),
+          },
+        }
+      ),
+    {
+      attempts: packageInstallAttempts,
+      intervalMs: packageInstallIntervalMs,
+      wait,
+    }
+  );
   writeFileSync(
     join(temporaryDirectory, "verify.mjs"),
     `import { createDetector } from "profanity-kit";

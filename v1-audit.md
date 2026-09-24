@@ -1,7 +1,7 @@
 # Profanity Kit — v1 Readiness Audit and Release Plan
 
-> Status: implementation and release-candidate verification complete; awaiting
-> the repository's pull request and publish workflow.
+> Status: v1.0.0 published and registry-verified. Release workflow propagation
+> handling is being hardened based on the first publish run.
 > Scope: **fix and verify actionable audit findings**, not a broad refactor or language expansion.
 >
 > Repository: https://github.com/up2dul/profanity-kit  
@@ -140,9 +140,8 @@ ADR-003 and ADR-004 currently show `Status: Provisional` despite corresponding i
 
 ## Implementation and verification results
 
-The confirmed decisions above are implemented. The local release candidate is
-`profanity-kit@1.0.0`; publication still requires the normal pull request and
-GitHub Actions release workflow.
+The confirmed decisions above are implemented. `profanity-kit@1.0.0` is
+published on npm and the GitHub release is available.
 
 - `pnpm check` — passed: formatting, lint, types, and 39 tests across 4 files.
 - `pnpm dictionary:check` — passed.
@@ -153,12 +152,19 @@ GitHub Actions release workflow.
 - Qalbwise integration — the production build passed in a temporary checkout at
   commit `5997b6a9f0229e0ec62c0f555edbe3a27d48ea87` using the `1.0.0` tarball.
   The source checkout was not changed; it still pins `0.1.0-next.2`.
-- GitHub had no open issues or pull requests at audit time. npm currently tags
-  `0.2.0` as `latest`; `1.0.0` is not published.
+- GitHub had no open issues or pull requests at audit time. npm now tags
+  `1.0.0` as `latest`; the GitHub release tag is `profanity-kit@1.0.0`.
 
-**Conclusion:** the v1.0.0 release candidate satisfies the agreed readiness
-gates. The release workflow has not run yet; it should publish `1.0.0` directly
-after this branch is merged and the required CI checks pass.
+The first GitHub Release workflow published successfully through npm Trusted
+Publishing, but its post-publish verifier exhausted its initial wait while the
+npm metadata was visible before the tarball CDN stopped returning a cached 404.
+After the CDN cache expired, `pnpm release:verify` passed, including package
+installation, imports, registry signature, and provenance attestation. The
+verifier now retries tarball installation to cover this propagation delay.
+
+**Conclusion:** v1.0.0 is released. The local quality, package, performance,
+documentation, and Qalbwise integration gates passed; registry integrity and
+provenance also passed after the CDN refreshed.
 
 ## Deliverables for handoff
 
