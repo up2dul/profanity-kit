@@ -24,18 +24,24 @@ Use Conventional Commit messages, such as `feat: add a detector option` or
 Run `pnpm changeset` for user-visible package changes. Documentation-only and
 internal maintenance changes may omit a changeset.
 
-Maintainers should follow the [release rehearsal runbook](docs/releasing.md)
-for prerelease versioning, npm Trusted Publishing, and registry verification.
+Maintainers should follow the [release runbook](docs/releasing.md) for the
+direct v1.0.0 release, future prereleases, npm Trusted Publishing, and registry
+verification.
 
 ## Dictionary contributions
 
 To change an existing language dictionary:
 
 - Edit `dictionaries/<language>/words.txt` and update its `metadata.json`,
-  including the dictionary version.
+  including that pack's semantic version. Pack versions evolve independently:
+  bump major for a fundamental curation-policy or compatibility-boundary
+  change, minor for reviewed word additions or removals, and patch for
+  metadata/provenance corrections that leave the word set unchanged.
 - Add a focused regression test for the behavior the change addresses.
 - Run `pnpm dictionary:generate` and commit the updated generated file.
 - Add a changeset because dictionary changes affect package behavior.
+- Follow the curation and evaluation-corpus guidance in
+  [`dictionaries/README.md`](dictionaries/README.md).
 
 To add a new language pack:
 

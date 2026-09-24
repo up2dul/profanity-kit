@@ -485,4 +485,4 @@ export const words = Object.freeze([
   "whorish",
   "wtf",
 ] as const);
-export const version = "0.3.0";
+export const version = "1.0.0";

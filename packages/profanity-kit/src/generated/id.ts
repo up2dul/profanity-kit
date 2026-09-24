@@ -6,7 +6,6 @@ export const words = Object.freeze([
   "anjay",
   "anjg",
   "anjim",
-  "anjing",
   "anjir",
   "anjng",
   "anjrit",
@@ -16,7 +15,6 @@ export const words = Object.freeze([
   "asu",
   "asuwo",
   "asw",
-  "babi",
   "bacod",
   "bacot",
   "bacotnya",
@@ -184,8 +182,6 @@ export const words = Object.freeze([
   "sange",
   "sarap",
   "sat",
-  "sempak",
-  "setan",
   "sial",
   "sialan",
   "sialanmu",
@@ -220,6 +216,5 @@ export const words = Object.freeze([
   "tololnya",
   "tot",
   "tusbol",
-  "wedus",
 ] as const);
-export const version = "0.3.0";
+export const version = "1.0.0";

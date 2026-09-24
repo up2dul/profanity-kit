@@ -1,6 +1,6 @@
 # ADR-002 — Package exports, ESM, and runtime contract
 
-**Status:** Provisional
+**Status:** Accepted
 
 ## Context
 

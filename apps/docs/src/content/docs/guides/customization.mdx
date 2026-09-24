@@ -12,6 +12,8 @@ Configuration is immutable, so create a new detector when rules change.
 
 Use `blockList` for product terms or community slang outside a language pack.
 These whole-word matches have `source: "custom"` and no language codes.
+If a blocklist entry overlaps a dictionary word, the custom entry wins and is
+reported as custom with no language codes.
 
 ```ts
 import { createDetector } from "profanity-kit";
@@ -25,10 +27,21 @@ detector.filter("avoid internalterm here");
 
 It matches `internalterm!`, but not `internalterms`.
 
+If a custom entry overlaps a dictionary entry, the result reports the custom
+source and has no language attribution:
+
+```ts
+const detector = createDetector({ blockList: ["shit"] });
+detector.findAll("shit");
+// => [{ value: "shit", languages: [], source: "custom", ... }]
+```
+
 ## Allow a dictionary word
 
 Use `allowList` when a dictionary word is acceptable in your context. It has
-the highest precedence and suppresses both pack and blocklist matches.
+the highest precedence and suppresses both pack and blocklist matches. The
+allowlist applies across every configured language and normalization locale,
+regardless of language-pack order.
 
 ```ts
 const detector = createDetector({ allowList: ["shit"] });
@@ -120,3 +133,9 @@ const matches = detector.findAll("Flag exampleword.");
 
 Add `normalization: { caseLocale: "..." }` only when the pack needs
 locale-specific lowercasing. It must be a valid JavaScript locale.
+
+Each `words` entry, `blockList` entry, and `allowList` entry must be exactly one
+Unicode token made of letters, combining marks, or numbers. Spaces, hyphens,
+underscores, punctuation, and leading or trailing whitespace are rejected when
+the detector is created. Use one entry per word; phrase matching is not
+supported.

@@ -6,6 +6,8 @@ version intent and changelog generation. GitHub Actions publishes from the
 
 ## Normal `next` release
 
+Use this path for future prereleases after the direct v1 stable release.
+
 1. Confirm every user-visible change on `main` has a Changeset and run:
 
    ```sh
@@ -104,7 +106,25 @@ the application. Run that application's tests and production build. Confirm:
 - integration feedback, including the application and tested commit, is added
   to the Phase 6 issue.
 
-Do not exit prerelease mode until the integration feedback is resolved and the
-stable-release gates in ADR-008 are satisfied. When ready, run
-`pnpm changeset pre exit`, commit the result, and use the same release workflow
-for the stable version.
+## Direct v1.0.0 release
+
+The first stable release is published directly as `1.0.0`, without a `next`
+prerelease. Before merging the release PR:
+
+1. Confirm the package version and changelog say `1.0.0`, both built-in packs
+   report data version `1.0.0`, and the Indonesian dictionary matches the
+   approved curation policy.
+2. Pass the v1 audit gates: `pnpm dictionary:check`, `pnpm check`,
+   `pnpm package:artifact`, `pnpm package:measure:check`,
+   `pnpm performance:check`, `pnpm docs:check`, and `pnpm docs:build`.
+3. Install the release candidate tarball into a temporary Qalbwise checkout and
+   run its production build. Record the tested Qalbwise commit and build result.
+4. Merge the release PR. The Release workflow publishes the exact version to
+   npm through Trusted Publishing with provenance, creates the Git tag and
+   GitHub release, and verifies the registry artifact.
+5. Confirm `npm view profanity-kit@latest version` reports `1.0.0`, then test
+   the registry artifact in the downstream app when updating its dependency.
+
+Future prereleases may use the `next` path above. A stable release must satisfy
+the gates in ADR-008; it does not wait for third-party feedback when the
+maintainer owns and validates the downstream consumer.

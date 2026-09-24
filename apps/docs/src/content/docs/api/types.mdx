@@ -23,8 +23,9 @@ interface DetectorOptions {
 | `allowList`   | `readonly string[]` | `[]`    | Words to allow, including pack and blocklist entries. |
 | `replacement` | `string`            | `"*"`   | One Unicode code point used by `filter()`.            |
 
-Entries must be non-empty strings. Configuration is snapshotted at creation;
-later mutations to source arrays do not affect the detector.
+Each entry must be exactly one Unicode word token containing only letters,
+combining marks, or numbers. Configuration is snapshotted at creation; later
+mutations to source arrays do not affect the detector.
 
 ## `LanguageDetectorOptions`
 
@@ -137,9 +138,13 @@ interface LanguagePack<TCode extends string = string> {
 | --------------- | --------------------------------------------------------- | -------- | ------------------------------------ |
 | `code`          | `TCode`                                                   | Yes      | Non-empty identifier such as `"en"`. |
 | `name`          | `string`                                                  | Yes      | Non-empty human-readable name.       |
-| `version`       | `string`                                                  | Yes      | Non-empty dictionary version.        |
-| `words`         | `readonly string[]`                                       | Yes      | Non-empty whole-word entries.        |
+| `version`       | `string`                                                  | Yes      | Version of this pack's data.         |
+| `words`         | `readonly string[]`                                       | Yes      | Entries are single Unicode tokens.   |
 | `normalization` | [`LanguagePackNormalization`](#languagepacknormalization) | No       | Locale-aware casing settings.        |
+
+Each pack's data version is independent from the npm package version and other
+language packs. Every word entry must contain only Unicode letters, combining
+marks, or numbers.
 
 ## `LanguagePackNormalization`
 
@@ -208,9 +213,9 @@ type ProfanityKitErrorCode =
   | "INVALID_REPLACEMENT";
 ```
 
-| Code                       | Meaning                                                 |
-| -------------------------- | ------------------------------------------------------- |
-| `INVALID_LANGUAGE_PACK`    | The collection, a pack field, or its locale is invalid. |
-| `EMPTY_LANGUAGE_LIST`      | The core factory received no packs.                     |
-| `INVALID_DICTIONARY_ENTRY` | A list or pack word is not a non-empty string.          |
-| `INVALID_REPLACEMENT`      | A replacement is not one Unicode code point.            |
+| Code                       | Meaning                                                    |
+| -------------------------- | ---------------------------------------------------------- |
+| `INVALID_LANGUAGE_PACK`    | The collection, a pack field, or its locale is invalid.    |
+| `EMPTY_LANGUAGE_LIST`      | The core factory received no packs.                        |
+| `INVALID_DICTIONARY_ENTRY` | A list or pack word is not exactly one Unicode word token. |
+| `INVALID_REPLACEMENT`      | A replacement is not one Unicode code point.               |
