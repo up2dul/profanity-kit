@@ -1,5 +1,11 @@
 # profanity-kit
 
+## 1.0.1
+
+### Patch Changes
+
+- 32e668d: Refresh the package README displayed on npm.
+
 ## 1.0.0
 
 ### Major Changes
